@@ -1,5 +1,5 @@
 import { require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BV9n32gW.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BQvTM40p.js
 var import_jsx_runtime = require_jsx_runtime();
 function App() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", {
@@ -12,15 +12,15 @@ function App() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(47,106,74,0.18),transparent_66%)]" }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "island-kicker mb-3",
-						children: "TanStack Start Base Template"
+						children: "TanStack Start"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 						className: "display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--sea-ink)] sm:text-6xl",
-						children: "Start simple, ship quickly."
+						children: "Simple, ship quickly."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg",
-						children: "This base starter intentionally keeps things light: two routes, clean structure, and the essentials you need to build from scratch."
+						children: "With TanStack Start, you can build modern web apps with React, TypeScript, Tailwind, and more. This starter template is designed to help you get up and running quickly while providing a solid foundation for your project."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-wrap gap-3",

@@ -1,6 +1,6 @@
 import { __toESM } from "../_runtime.mjs";
 import { HeadContent, Link, Scripts, createFileRoute, createRootRoute, createRouter, lazyRouteComponent, require_jsx_runtime, require_react } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-B9IvxgKH.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-lw0ryzBA.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Footer() {
@@ -196,7 +196,7 @@ function Header() {
 }
 var styles_default = "/assets/styles-Divkme5R.css";
 var THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`;
-var Route$2 = createRootRoute({
+var Route$3 = createRootRoute({
 	head: () => ({
 		meta: [
 			{ charSet: "utf-8" },
@@ -228,23 +228,30 @@ function RootDocument({ children }) {
 		})]
 	});
 }
-var $$splitComponentImporter$1 = () => import("./routes-BV9n32gW.mjs");
-var Route$1 = createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter$1, "component") });
-var $$splitComponentImporter = () => import("./about-D9herq5f.mjs");
-var Route = createFileRoute("/about")({ component: lazyRouteComponent($$splitComponentImporter, "component") });
+var $$splitComponentImporter$2 = () => import("./routes-BQvTM40p.mjs");
+var Route$2 = createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter$2, "component") });
+var $$splitComponentImporter$1 = () => import("./about-bmp0Otaq.mjs");
+var Route$1 = createFileRoute("/about")({ component: lazyRouteComponent($$splitComponentImporter$1, "component") });
+var $$splitComponentImporter = () => import("./share-BMIhJArb.mjs");
+var Route = createFileRoute("/share")({ component: lazyRouteComponent($$splitComponentImporter, "component") });
 var rootRouteChildren = {
-	IndexRoute: Route$1.update({
+	IndexRoute: Route$2.update({
 		id: "/",
 		path: "/",
-		getParentRoute: () => Route$2
+		getParentRoute: () => Route$3
 	}),
-	AboutRoute: Route.update({
+	AboutRoute: Route$1.update({
 		id: "/about",
 		path: "/about",
-		getParentRoute: () => Route$2
+		getParentRoute: () => Route$3
+	}),
+	ShareRoute: Route.update({
+		id: "/share",
+		path: "/share",
+		getParentRoute: () => Route$3
 	})
 };
-var routeTree = Route$2._addFileChildren(rootRouteChildren)._addFileTypes();
+var routeTree = Route$3._addFileChildren(rootRouteChildren)._addFileTypes();
 function getRouter() {
 	return createRouter({
 		routeTree,
