@@ -1,6 +1,6 @@
 import { __toESM } from "../_runtime.mjs";
 import { HeadContent, Link, Scripts, createFileRoute, createRootRoute, createRouter, lazyRouteComponent, require_jsx_runtime, require_react } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-lw0ryzBA.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DecD2j4C.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Footer() {
@@ -228,11 +228,11 @@ function RootDocument({ children }) {
 		})]
 	});
 }
-var $$splitComponentImporter$2 = () => import("./routes-BQvTM40p.mjs");
+var $$splitComponentImporter$2 = () => import("./routes-DNygDoQL.mjs");
 var Route$2 = createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter$2, "component") });
 var $$splitComponentImporter$1 = () => import("./about-bmp0Otaq.mjs");
 var Route$1 = createFileRoute("/about")({ component: lazyRouteComponent($$splitComponentImporter$1, "component") });
-var $$splitComponentImporter = () => import("./share-BMIhJArb.mjs");
+var $$splitComponentImporter = () => import("./share-Dp-yjYn8.mjs");
 var Route = createFileRoute("/share")({ component: lazyRouteComponent($$splitComponentImporter, "component") });
 var rootRouteChildren = {
 	IndexRoute: Route$2.update({

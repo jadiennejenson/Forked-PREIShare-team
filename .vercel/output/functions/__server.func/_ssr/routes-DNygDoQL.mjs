@@ -1,5 +1,5 @@
 import { require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BQvTM40p.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DNygDoQL.js
 var import_jsx_runtime = require_jsx_runtime();
 function App() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", {
@@ -24,17 +24,25 @@ function App() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-wrap gap-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-							href: "/about",
-							className: "rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]",
-							children: "About This Starter"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-							href: "https://tanstack.com/router",
-							target: "_blank",
-							rel: "noopener noreferrer",
-							className: "rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]",
-							children: "Router Guide"
-						})]
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+								href: "/about",
+								className: "rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]",
+								children: "About This Starter"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+								href: "https://tanstack.com/router",
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]",
+								children: "Router Guide"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+								href: "/share",
+								className: "rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]",
+								children: "Share File"
+							})
+						]
 					})
 				]
 			}),
