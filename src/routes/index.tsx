@@ -13,8 +13,7 @@ function App() {
           Start simple, ship quickly.
         </h1>
         <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
-          This base starter intentionally keeps things light: two routes, clean
-          structure, and the essentials you need to build from scratch.
+          With TanStack Start, you can build modern web apps with React, TypeScript, Tailwind, and more. This starter template is designed to help you get up and running quickly while providing a solid foundation for your project.
         </p>
         <div className="flex flex-wrap gap-3">
           <a
