@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "mask-image",
+          "backdrop-filter",
+          "border-color: color-mix(in oklab, var(--lagoon-deep) 35%, var(--line))",
+          "border-color: color-mix(in oklab, var(--lagoon-deep) 58%, var(--line))",
+          "border: 1px solid color-mix(in oklab, var(--lagoon-deep) 34%, var(--line))"
+        ]
+      }
+    ]
+  }
+}
