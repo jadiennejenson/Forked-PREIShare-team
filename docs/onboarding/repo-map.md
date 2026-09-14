@@ -22,6 +22,9 @@ This repository is a single-page React app built with TanStack Start and Vite, n
 ├── docs/
 │   └── onboarding/
 │       └── repo-map.md    # this file
+├── .cursor/
+│   └── rules/
+│       └── preishare.mdc  # project-wide editor/agent conventions
 ├── src/
 │   ├── components/        # app shell UI
 │   ├── lib/               # shared helpers/utilities
@@ -156,6 +159,7 @@ For now, there is no canonical backend directory to edit in this workspace.
 - `vite.config.ts`
 - `package.json` (when changing dependencies or scripts)
 - `README.md` or onboarding docs
+- `.cursor/rules/*.mdc` (project guidance; keep it stack-specific and secret-free)
 - `tsconfig.json` and `tsr.config.json` when intentionally adjusting tool behavior
 
 ### Do not edit without explicit reason

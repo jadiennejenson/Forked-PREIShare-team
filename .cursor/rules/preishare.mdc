@@ -1,0 +1,63 @@
+---
+description: Project conventions for the PREIShare TypeScript, React, TanStack Start, and Supabase stack
+alwaysApply: true
+---
+
+# PREIShare project rules
+
+## Stack and architecture
+
+- Use TypeScript and preserve the existing React 19 and TanStack Start architecture.
+- Use TanStack Router file-based routes under `src/routes/`. Route files are the source of truth for URLs and page behavior.
+- Use React components and hooks for UI behavior. Keep reusable UI in `src/components/` and shared domain helpers in `src/lib/`.
+- Use Tailwind CSS through the existing `src/styles.css` entrypoint and Vite configuration. Follow the existing visual tokens and component patterns before introducing new styling systems.
+- Use TanStack Start server functions or server routes for server-only work. Keep browser-only APIs, such as IndexedDB and `window`, behind client execution boundaries.
+- Treat Supabase as the data, authentication, and storage boundary when it is introduced. Keep Supabase access in a focused server/data layer rather than scattering database calls through presentational components.
+- Do not describe the current browser-only IndexedDB share flow as a Supabase-backed feature. The repository currently has no Supabase integration.
+
+## TypeScript and React
+
+- Keep types explicit at domain boundaries and prefer inferred types inside straightforward component code.
+- Avoid `any`, non-null assertions, and broad casts unless the runtime boundary genuinely requires one and the assumption is documented nearby.
+- Preserve existing public component and route APIs unless the task requires a breaking change.
+- Keep side effects in hooks or server functions, not during render.
+- Handle loading, empty, error, and success states for asynchronous UI.
+
+## TanStack Start and routing
+
+- Add or change pages by editing files under `src/routes/`; do not hand-edit `src/routeTree.gen.ts`.
+- Regenerate routes with `npm run generate-routes` after route changes when generated output is needed.
+- Keep server-only code out of client modules. Use `createServerFn`, `createServerOnlyFn`, or the appropriate TanStack Start server boundary for secrets, privileged operations, and request-dependent logic.
+- Keep route loaders, server functions, and handlers narrow. Validate untrusted route params, search params, form data, and request input before use.
+- Use TanStack Router navigation APIs and typed route links rather than manually duplicating route state.
+
+## Supabase rules
+
+- The current repository does not include a Supabase client or schema. Do not add imagined tables, policies, auth flows, or environment names as if they already exist.
+- When adding Supabase, use the official typed client and keep schema types synchronized with the actual project schema or generated types.
+- Use the publishable/anon key only in browser-safe code. Never expose a service-role key, database password, access token, or private key to the client.
+- Perform service-role, administrative, storage-management, and privileged database operations only in server-only code with appropriate authorization checks.
+- Enforce authorization with Supabase Row Level Security and policies; do not rely on UI visibility or client-side checks.
+- Do not log session tokens, authorization headers, uploaded private data, or database credentials.
+
+## Secrets and configuration
+
+- Never commit real secrets, credentials, tokens, private keys, connection strings, or production data.
+- Never place secrets in source files, docs, fixtures, screenshots, commit messages, or this rule. Use clearly fake placeholders such as `YOUR_SUPABASE_URL` and `YOUR_SUPABASE_ANON_KEY` only when an example is necessary.
+- Keep server-only values in server-side environment access. Do not use a `VITE_` prefix for secrets; `VITE_*` values are shipped to the browser.
+- Client-exposed configuration must be intentionally public and limited to values such as a Supabase project URL and publishable/anon key.
+- Read environment variables at request/server-function time where possible, not as a module-level secret cache.
+- Do not ask users to paste secrets into chat, source files, or generated patches.
+
+## Generated and do-not-edit areas
+
+- Do not hand-edit `src/routeTree.gen.ts`; regenerate it from route files.
+- Do not edit `dist/`, `node_modules/`, `.tanstack/`, `.vercel/`, or `.git/`.
+- Treat `package-lock.json` as package-manager output. Update it through `npm install` or another intentional dependency operation.
+- Keep changes focused on source files, configuration, docs, and tests relevant to the task.
+
+## Validation
+
+- Run `npm run generate-routes` after route structure changes.
+- Run `npm run build` before considering a frontend or server-boundary change complete.
+- Check that no secret-looking values or generated output were added to the diff.
