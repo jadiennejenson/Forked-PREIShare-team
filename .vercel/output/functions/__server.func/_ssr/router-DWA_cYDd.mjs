@@ -1,6 +1,6 @@
 import { __toESM } from "../_runtime.mjs";
 import { HeadContent, Link, Scripts, createFileRoute, createRootRoute, createRouter, lazyRouteComponent, require_jsx_runtime, require_react } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-BqPNuhl5.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DWA_cYDd.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Footer() {
@@ -194,7 +194,7 @@ function Header() {
 		})
 	});
 }
-var styles_default = "/assets/styles-BKsiRzM6.css";
+var styles_default = "/assets/styles-BsyBB8Jz.css";
 var THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`;
 var Route$3 = createRootRoute({
 	head: () => ({
