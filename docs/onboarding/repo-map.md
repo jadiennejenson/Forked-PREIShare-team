@@ -1,186 +1,77 @@
-# Repo map
+# PREIShare repository map
 
-## High-level architecture
+## What exists today
 
-This repository is a single-page React app built with TanStack Start and Vite, not a classic multi-service backend repo.
+This checkout is a single root-level TanStack Start application. It is not currently a monorepo: there are no `apps/` or `packages/` directories, and there is no separate API, worker, or shared-package project.
 
-- Frontend app: `src/`
-- Routing: TanStack Router file-based routes under `src/routes/`
-- Styling: Tailwind via `src/styles.css` and `vite.config.ts`
-- Runtime/tooling: Vite + TanStack Start + Nitro + React + TypeScript
-- Backend: none committed as a separate service; the app currently relies on browser-side storage for the share flow
+The application runtime is React 19 with TanStack Router/Start, Vite, Tailwind CSS, and Nitro. The current share flow persists files in browser IndexedDB; it is not backed by Supabase or another server-side data service.
 
-## Top-level project layout
+## Repository layout
 
 ```text
 .
-├── .git/                  # repo metadata; do not edit
-├── .tanstack/             # generated local tooling/cache; do not edit
-├── .vercel/               # local deployment metadata; do not edit
-├── dist/                  # production build output; generated only
-├── node_modules/          # installed dependencies; generated only
-├── docs/
-│   └── onboarding/
-│       └── repo-map.md    # this file
-├── .cursor/
-│   └── rules/
-│       └── preishare.mdc  # project-wide editor/agent conventions
-├── src/
-│   ├── components/        # app shell UI
-│   ├── lib/               # shared helpers/utilities
-│   ├── routes/            # page routes + route layout
-│   ├── router.tsx         # router factory
-│   ├── routeTree.gen.ts   # generated route map; do not hand-edit
-│   ├── styles.css         # Tailwind entry + theme tokens
-│   └── ...
-├── .hintrc                # local lint config; safe to adjust if needed
-├── AGENTS.md              # repo instructions/guidance; safe to read, do not rewrite casually
-├── README.md              # starter app docs; editable if product docs are introduced
-├── package.json           # scripts, deps, and app metadata
-├── package-lock.json      # generated lockfile; do not hand-edit
-├── tsconfig.json          # TypeScript config; settings are project-level
-├── tsr.config.json        # TanStack Router generation config
-├── vite.config.ts         # Vite + TanStack + Tailwind plugin wiring
-└── ...
+├── .cursor/rules/          # project and agent conventions
+├── .git/                   # Git metadata; do not edit
+├── .tanstack/              # generated TanStack tooling; do not edit
+├── .vercel/                # generated/local Vercel output; do not edit
+├── dist/                   # production build output; do not edit
+├── docs/onboarding/        # onboarding and domain documentation
+├── src/                    # the PREIShare application
+├── AGENTS.md               # repository instructions and project context
+├── README.md               # project setup and framework notes
+├── package.json            # root app scripts and dependencies
+├── package-lock.json       # npm-generated dependency lockfile
+├── tsconfig.json           # TypeScript compiler configuration
+├── tsr.config.json         # TanStack Router route-generation config
+└── vite.config.ts          # Vite, TanStack Start, Nitro, Tailwind wiring
 ```
 
-## Frontend paths
+### `apps/` and `packages/`
 
-### `src/routes/`
-This is the route entry point for the app. Each file maps to a URL.
+These directories do not exist in the current repository. The root package is the only application package (`preishare-org-repo` in `package.json`). If the project is split into multiple deployables or shared libraries later, those folders should be added deliberately along with workspace configuration; do not assume they already exist.
 
-- `src/routes/__root.tsx`: global layout, document shell, header/footer, devtools injection, theme bootstrap
-- `src/routes/index.tsx`: home page
-- `src/routes/about.tsx`: informational page
-- `src/routes/share.tsx`: file-sharing UI and IndexedDB logic
+## Application source: `src/`
 
-Safe to edit:
-- route components and page content
-- page-specific logic and UI
-- route-level initialization or loaders
-
-Not safe to edit casually:
-- route generation output is not stored here; route files are the source of truth
-
-### `src/components/`
-Reusable UI pieces that sit above routes.
-
-- `src/components/Header.tsx`: top navigation/header shell
-- `src/components/Footer.tsx`: footer shell
-- `src/components/ThemeToggle.tsx`: theme switcher or UI state
-
-Safe to edit:
-- labels, styling, navigation, layout
-- reusable UI behavior
-
-### `src/lib/`
-Small shared helpers and app-domain utilities.
-
-- `src/lib/user.ts`: currently a stubbed user model helper; no real session/auth wiring yet
-
-Safe to edit:
-- shared TypeScript helpers
-- lightweight app logic that does not cross runtime boundaries
-
-### `src/styles.css`
-Global styling and Tailwind entrypoint.
-
-Safe to edit:
-- visual tokens, theme colors, global layout rules
-- shared utility styling
-
-### `src/router.tsx`
-Creates the TanStack Router instance.
-
-Safe to edit:
-- router options such as preload behavior or scroll restoration
-
-Do not edit casually:
-- do not duplicate or override generated route tree logic here beyond the router factory itself
-
-## Generated / tool-managed files
-
-These are not hand-authored application logic and should usually be regenerated instead of edited directly.
-
-### `src/routeTree.gen.ts`
-Generated by TanStack Router (`npm run generate-routes`).
-
-- generated route tree from `src/routes/`
-- should not be manually patched
-- if the route structure changes, regenerate this file instead of editing it by hand
-
-### `dist/`
-Built production output.
-
-- generated by `npm run build`
-- do not edit
-
-### `node_modules/`
-Dependency installation output.
-
-- do not edit
-
-### `package-lock.json`
-Lockfile generated from dependency resolution.
-
-- do not hand-edit except when intentionally updating dependencies via the package manager
-
-### `.tanstack/`, `.vercel/`, `.git/`
-Tooling and git metadata.
-
-- do not edit
-
-## Runtime/data behavior
-
-### Browser-side storage
-The existing share feature is not a backend service. In `src/routes/share.tsx`, files are stored in the browser using IndexedDB.
-
-This means:
-- it is client-side persistence, not server-side storage
-- it is suitable for local file sharing demos or browser-only workflows
-- a real backend would need a separate API/server if persistence must be shared across devices or users
-
-### Server functions / API layer
-This repo does not currently include a separate server API layer or server function implementation for authenticated or persisted application logic.
-
-If a future feature needs a real backend, the likely place would be:
-- TanStack Start server functions near route/server code, or
-- a separate backend service outside this repo
-
-For now, there is no canonical backend directory to edit in this workspace.
-
-## Safe vs do-not-edit summary
-
-### Safe to edit
-- `src/routes/*.tsx`
-- `src/components/*.tsx`
-- `src/lib/*.ts`
-- `src/styles.css`
-- `vite.config.ts`
-- `package.json` (when changing dependencies or scripts)
-- `README.md` or onboarding docs
-- `.cursor/rules/*.mdc` (project guidance; keep it stack-specific and secret-free)
-- `tsconfig.json` and `tsr.config.json` when intentionally adjusting tool behavior
-
-### Do not edit without explicit reason
-- `src/routeTree.gen.ts`
-- `dist/`
-- `node_modules/`
-- `package-lock.json`
-- `.git/`, `.tanstack/`, `.vercel/`
-- generated cache or local deployment metadata
-
-## Quick rule of thumb
-
-If the file is a source file under `src/` or a config file at the repo root, it is usually the place to make app changes.
-If the file is generated by tooling, dependency install, build output, or git metadata, leave it alone unless you are intentionally regenerating or updating the environment.
-
-## Commands to regenerate tool-managed files
-
-```bash
-npm run generate-routes
-npm run build
-npm install
+```text
+src/
+├── components/             # reusable app-shell components
+│   ├── Footer.tsx
+│   ├── Header.tsx
+│   └── ThemeToggle.tsx
+├── lib/                    # shared helpers and domain utilities
+│   └── user.ts
+├── routes/                 # file-based route source files
+│   ├── __root.tsx          # document shell and shared layout
+│   ├── about.tsx           # informational route
+│   ├── index.tsx           # home route
+│   └── share.tsx           # browser-side file-sharing flow
+├── router.tsx              # router factory
+├── routeTree.gen.ts        # generated route tree; regenerate, do not hand-edit
+└── styles.css              # Tailwind entrypoint and global styles
 ```
 
-These commands are the correct way to refresh generated artifacts when routing or dependencies change.
+Route files under `src/routes/` are the source of truth for URLs and page behavior. Reusable UI belongs in `src/components/`; shared non-UI logic belongs in `src/lib/`.
+
+## Configuration and generated output
+
+- `vite.config.ts` composes the Vite, React, Tailwind, TanStack Start, devtools, and Nitro plugins. Nitro currently uses the Vercel preset.
+- `tsconfig.json` defines strict TypeScript and the `#/*` and `@/*` aliases into `src/`.
+- `tsr.config.json` controls TanStack Router route generation.
+- `package.json` owns the root application scripts: `dev`, `generate-routes`, `build`, and `preview`.
+- `src/routeTree.gen.ts`, `dist/`, `.tanstack/`, `.vercel/`, and `node_modules/` are generated or installed output. Do not edit them directly.
+- Update `package-lock.json` through npm rather than hand-editing it.
+
+## Runtime boundaries
+
+There is currently no separate backend directory. TanStack Start server functions or route handlers may be added near the route that owns a server concern, but none are committed as a standalone API today. Browser-only APIs such as IndexedDB should remain behind client execution boundaries.
+
+## Where to make changes
+
+- Pages and URLs: `src/routes/`
+- Shared UI: `src/components/`
+- Shared helpers: `src/lib/`
+- Global styles: `src/styles.css`
+- Build, routing, and TypeScript behavior: root config files
+- Product and onboarding context: `docs/` and `README.md`
+
+After changing route structure, run `npm run generate-routes`. For a full application change, run `npm run build`.
